@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Conversor HTML para PDF</title>
+  <title>Conversor HTML para PDF (Horizontal)</title>
   <style>
     * {
       box-sizing: border-box;
@@ -78,7 +78,6 @@
       transform: scale(0.99);
     }
 
-    /* Iframe oculto usado para processar o HTML completo e gerar a impressão/PDF */
     #print-frame {
       display: none;
     }
@@ -87,20 +86,25 @@
 <body>
 
   <div class="container">
-    <h1>Conversor HTML para PDF</h1>
+    <h1>Conversor HTML para PDF (Horizontal)</h1>
     <textarea id="html-input" placeholder="Cole seu código HTML aqui..."></textarea>
-    <button onclick="gerarPDF()">Gerar PDF</button>
+    <button onclick="gerarPDF()">Gerar PDF Horizontal</button>
   </div>
 
   <iframe id="print-frame"></iframe>
 
   <script>
-    // Código de amostra pronto para exibição e teste imediato
+    // Amostra já configurada para paisagem/horizontal
     const amostraHTML = `<!DOCTYPE html>
 <html>
 <head>
   <meta charset="UTF-8">
   <style>
+    /* Força a página de impressão a ficar em modo Paisagem (Horizontal) */
+    @page {
+      size: landscape;
+    }
+    
     body {
       font-family: Arial, sans-serif;
       padding: 40px;
@@ -124,17 +128,15 @@
   </style>
 </head>
 <body>
-  <h1>Amostra de Documento PDF</h1>
-  <p>Este é um exemplo de documento renderizado diretamente de um código HTML completo.</p>
+  <h1>Amostra de Documento Horizontal (Paisagem)</h1>
+  <p>Este documento foi gerado em formato horizontal graças à regra CSS <code>@page { size: landscape; }</code>.</p>
   
   <div class="card">
-    <strong>Status da Renderização:</strong> OK!<br>
-    Suporta CSS embutido, tags <html>, <head>, <body> e formatação completa.
+    <strong>Dica:</strong> Para manter o PDF sempre horizontal, basta incluir <code><style> @page { size: landscape; } </style></code> dentro do seu HTML colado acima.
   </div>
 </body>
 </html>`;
 
-    // Preenche o textarea com a amostra ao carregar
     document.getElementById('html-input').value = amostraHTML;
 
     function gerarPDF() {
@@ -149,7 +151,6 @@
       doc.write(input);
       doc.close();
 
-      // Aguarda 250ms para garantir que o CSS do iframe seja aplicado antes de disparar a impressão
       setTimeout(() => {
         iframe.contentWindow.focus();
         iframe.contentWindow.print();
