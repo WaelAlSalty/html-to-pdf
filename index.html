@@ -79,14 +79,18 @@
       transform: scale(0.99);
     }
 
-    /* Container oculto usado exclusivamente para renderizar o PDF */
+    /* O container de renderização agora fica invisível apenas por opacidade e z-index */
     #pdf-render {
-      position: absolute;
-      left: -9999px;
-      top: -9999px;
-      width: 800px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 210mm; /* Largura padrão A4 */
+      min-height: 297mm;
       background-color: #ffffff;
       color: #000000;
+      opacity: 0;
+      pointer-events: none;
+      z-index: -9999;
     }
   </style>
 </head>
@@ -95,30 +99,49 @@
   <div class="container">
     <h1>Conversor HTML para PDF</h1>
     <textarea id="html-input" placeholder="Cole seu código HTML aqui..."></textarea>
-    <button onclick="gerarPDF()">Gerar PDF</button>
+    <button id="btn-gerar" onclick="gerarPDF()">Gerar PDF</button>
   </div>
 
   <div id="pdf-render"></div>
 
   <script>
-    function gerarPDF() {
+    async function gerarPDF() {
       const input = document.getElementById('html-input').value;
       if (!input.trim()) return;
 
+      const btn = document.getElementById('btn-gerar');
+      btn.innerText = "Gerando PDF...";
+      btn.disabled = true;
+
       const renderArea = document.getElementById('pdf-render');
       renderArea.innerHTML = input;
+
+      // Espera 500ms para garantir que o DOM e estilos internos sejam processados
+      await new Promise(resolve => setTimeout(resolve, 500));
 
       const opt = {
         margin:       10,
         filename:     'documento.pdf',
         image:        { type: 'jpeg', quality: 0.98 },
-        html2canvas:  { scale: 2, useCORS: true, logging: false },
+        html2canvas:  { 
+          scale: 2, 
+          useCORS: true, 
+          logging: false,
+          scrollX: 0,
+          scrollY: 0
+        },
         jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
       };
 
-      html2pdf().set(opt).from(renderArea).save().then(() => {
+      try {
+        await html2pdf().set(opt).from(renderArea).save();
+      } catch (err) {
+        console.error("Erro ao gerar PDF:", err);
+      } finally {
         renderArea.innerHTML = '';
-      });
+        btn.innerText = "Gerar PDF";
+        btn.disabled = false;
+      }
     }
   </script>
 
