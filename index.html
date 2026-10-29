@@ -1,162 +1,123 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Conversor HTML para PDF (Horizontal)</title>
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    }
-
-    body {
-      background-color: #0d1117;
-      color: #c9d1d9;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
-
-    .container {
-      width: 100%;
-      max-width: 900px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    h1 {
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: #f0f6fc;
-      text-align: center;
-    }
-
-    textarea {
-      width: 100%;
-      height: 480px;
-      background-color: #161b22;
-      color: #00ff66;
-      border: 1px solid #30363d;
-      border-radius: 8px;
-      padding: 16px;
-      font-family: 'Consolas', 'Courier New', monospace;
-      font-size: 13px;
-      line-height: 1.5;
-      resize: vertical;
-      outline: none;
-    }
-
-    textarea:focus {
-      border-color: #00ff66;
-    }
-
-    button {
-      width: 100%;
-      padding: 14px;
-      background-color: #00ff66;
-      color: #000;
-      border: none;
-      border-radius: 8px;
-      font-size: 1rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: background-color 0.2s, transform 0.1s;
-    }
-
-    button:hover {
-      background-color: #00cc52;
-    }
-
-    button:active {
-      transform: scale(0.99);
-    }
-
-    #print-frame {
-      display: none;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>Registro de Temperatura - Novembro 2026 (Paisagem)</title>
+    <style>
+        @page {
+            size: A4 landscape;
+            margin: 10mm;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 10px;
+            -webkit-print-color-adjust: exact;
+            color-adjust: exact;
+        }
+        h3 {
+            text-align: center;
+            font-size: 16pt;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            font-size: 8.5pt;
+        }
+        th, td {
+            border: 1px solid #cccccc;
+            padding: 4px 2px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+        td:first-child {
+            font-weight: bold;
+            background-color: #fafafa;
+            width: 5%;
+        }
+        .header-turno {
+            background-color: #e9e9e9;
+        }
+        .col-temp {
+            width: 8%;
+        }
+        .col-obs {
+            width: 45%;
+            text-align: left;
+        }
+        .instructions {
+            margin-top: 10px;
+            font-size: 9pt;
+            border-top: 1px solid #cccccc;
+            padding-top: 5px;
+        }
+    </style>
 </head>
 <body>
 
-  <div class="container">
-    <h1>Conversor HTML para PDF (Horizontal)</h1>
-    <textarea id="html-input" placeholder="Cole seu código HTML aqui..."></textarea>
-    <button onclick="gerarPDF()">Gerar PDF Horizontal</button>
-  </div>
+    <h3>Registro de Temperatura Mínima e Máxima</h3>
+    <p style="text-align:center; margin-top:-5px; font-size:11pt;"><strong>Mês/Ano:</strong> Novembro / 2026</p>
 
-  <iframe id="print-frame"></iframe>
+    <table>
+        <thead>
+            <tr>
+                <th rowspan="2" style="vertical-align: middle;">Data</th>
+                <th colspan="2" class="header-turno">Manhã</th>
+                <th colspan="2" class="header-turno">Tarde</th>
+                <th colspan="2" class="header-turno">Noite</th>
+                <th rowspan="2" class="col-obs" style="vertical-align: middle;">Notas / Observações</th>
+            </tr>
+            <tr>
+                <th class="col-temp">Mín (°C)</th>
+                <th class="col-temp">Máx (°C)</th>
+                <th class="col-temp">Mín (°C)</th>
+                <th class="col-temp">Máx (°C)</th>
+                <th class="col-temp">Mín (°C)</th>
+                <th class="col-temp">Máx (°C)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>01/11</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>02/11</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>03/11</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>04/11</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>05/11</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>06/11</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>07/11</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>08/11</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>09/11</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>10/11</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>11/11</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>12/11</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>13/11</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>14/11</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>15/11</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>16/11</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>17/11</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>18/11</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>19/11</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>20/11</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>21/11</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>22/11</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>23/11</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>24/11</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>25/11</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>26/11</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>27/11</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>28/11</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>29/11</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>30/11</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        </tbody>
+    </table>
 
-  <script>
-    // Amostra já configurada para paisagem/horizontal
-    const amostraHTML = `<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <style>
-    /* Força a página de impressão a ficar em modo Paisagem (Horizontal) */
-    @page {
-      size: landscape;
-    }
-    
-    body {
-      font-family: Arial, sans-serif;
-      padding: 40px;
-      color: #333;
-    }
-    h1 {
-      color: #0066cc;
-      border-bottom: 2px solid #0066cc;
-      padding-bottom: 8px;
-    }
-    p {
-      font-size: 14px;
-      line-height: 1.6;
-    }
-    .card {
-      background-color: #f4f4f4;
-      border-left: 4px solid #00ff66;
-      padding: 15px;
-      margin-top: 20px;
-    }
-  </style>
-</head>
-<body>
-  <h1>Amostra de Documento Horizontal (Paisagem)</h1>
-  <p>Este documento foi gerado em formato horizontal graças à regra CSS <code>@page { size: landscape; }</code>.</p>
-  
-  <div class="card">
-    <strong>Dica:</strong> Para manter o PDF sempre horizontal, basta incluir <code><style> @page { size: landscape; } </style></code> dentro do seu HTML colado acima.
-  </div>
-</body>
-</html>`;
-
-    document.getElementById('html-input').value = amostraHTML;
-
-    function gerarPDF() {
-      const input = document.getElementById('html-input').value;
-      if (!input.trim()) return;
-
-      const iframe = document.getElementById('print-frame');
-      const iframeDoc = iframe.contentWindow || iframe.contentDocument;
-      
-      const doc = iframeDoc.document || iframeDoc;
-      doc.open();
-      doc.write(input);
-      doc.close();
-
-      setTimeout(() => {
-        iframe.contentWindow.focus();
-        iframe.contentWindow.print();
-      }, 250);
-    }
-  </script>
+    <div class="instructions">
+        <p><strong>Como Utilizar:</strong> Registre as temperaturas Mínima e Máxima de cada turno. Qualquer variação fora do padrão deve ser justificada no campo de observações.</p>
+    </div>
 
 </body>
 </html>
